@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vice Cover Studio — GTA-style cover art maker</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><span class="brand-mark">VC</span><span class="brand-name">VICE COVER STUDIO</span></div>
+  <p class="brand-tag">Turn your photo into a sun-soaked poster. Offline, in your browser.</p>
+</header>
+<main class="studio">
+  <section class="panel controls" aria-label="Cover controls">
+    <h2>1 · Photos</h2>
+    <div class="slots" id="slots">
+      <button type="button" class="slot" data-slot="0">Photo A</button>
+      <button type="button" class="slot" data-slot="1">Photo B</button>
+      <button type="button" class="slot" data-slot="2">Photo C</button>
+    </div>
+    <div class="row">
+      <label class="file-btn">Upload a photo
+        <input id="upload" type="file" accept="image/*">
+      </label>
+      <button id="samplePier" type="button">Sample: Pier</button>
+      <button id="sampleBlvd" type="button">Sample: Boulevard</button>
+    </div>
+    <p class="hint">Pick a slot, then upload or load a sample into it. Click a panel in the preview to select it.</p>
+
+    <h2>2 · Layout</h2>
+    <div class="choices" id="layouts">
+      <button type="button" data-layout="hero">Hero</button>
+      <button type="button" data-layout="triptych">Triptych</button>
+      <button type="button" data-layout="duo">Duo split</button>
+      <button type="button" data-layout="stack">Stack</button>
+    </div>
+
+    <h2>3 · Panel photo &amp; crop</h2>
+    <p class="hint" id="panelLabel">Selected panel: 1</p>
+    <div class="row">
+      <label>Panel photo
+        <select id="panelPhoto">
+          <option value="0">Photo A</option>
+          <option value="1">Photo B</option>
+          <option value="2">Photo C</option>
+        </select>
+      </label>
+    </div>
+    <label class="slider">Zoom <input id="zoom" type="range" min="1" max="2.5" step="0.05" value="1"><span id="zoomVal">1.00×</span></label>
+    <label class="slider">Pan left–right <input id="panX" type="range" min="-0.5" max="0.5" step="0.01" value="0"><span id="panXVal">0</span></label>
+    <label class="slider">Pan up–down <input id="panY" type="range" min="-0.5" max="0.5" step="0.01" value="0"><span id="panYVal">0</span></label>
+
+    <h2>4 · Words</h2>
+    <label class="field">Title
+      <input id="title" type="text" maxlength="28" value="VICE CITY">
+    </label>
+    <label class="field">Tagline
+      <input id="tagline" type="text" maxlength="48" value="SUNSET HEIST · LEONIDA">
+    </label>
+    <div class="choices" id="lettering">
+      <button type="button" data-lettering="block">Block</button>
+      <button type="button" data-lettering="neon">Neon glow</button>
+      <button type="button" data-lettering="outline">Outline</button>
+    </div>
+
+    <h2>5 · Grade &amp; size</h2>
+    <div class="choices" id="grades">
+      <button type="button" data-grade="sunset">Sunset</button>
+      <button type="button" data-grade="neon">Neon nights</button>
+      <button type="button" data-grade="palm">Palm dusk</button>
+      <button type="button" data-grade="noir">Noir</button>
+    </div>
+    <div class="choices" id="sizes">
+      <button type="button" data-size="1080x1080">1080 × 1080</button>
+      <button type="button" data-size="1080x1350">1080 × 1350</button>
+      <button type="button" data-size="1920x1080">1920 × 1080</button>
+    </div>
+
+    <button id="export" type="button" class="export">Export PNG</button>
+    <p id="status" role="status"></p>
+  </section>
+
+  <section class="panel preview" aria-label="Live preview">
+    <h2>Live preview <span id="sizeLabel">1080 × 1080</span></h2>
+    <div class="canvas-wrap">
+      <canvas id="preview" width="640" height="640" aria-label="Cover preview"></canvas>
+    </div>
+    <p class="hint">Click a panel to crop that photo. Export downloads the full-size PNG.</p>
+  </section>
+</main>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
