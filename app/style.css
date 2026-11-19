@@ -1,0 +1,150 @@
+/* Vice City Cover Studio — editor chrome. Dark neon, warm sunset accents. */
+:root {
+  --ink: #f4eef7;
+  --muted: #b9a8c4;
+  --panel: #1c1026;
+  --panel-2: #251535;
+  --line: #4a2d63;
+  --accent: #ff7a3d;
+  --accent-2: #ff2e88;
+  --accent-3: #ffc93d;
+  --bg: #120a1a;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  min-height: 100%;
+  background: var(--bg);
+  color: var(--ink);
+  font: 15px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+.topbar {
+  padding: 18px 28px 12px;
+  border-bottom: 1px solid var(--line);
+  background: linear-gradient(90deg, #2b0f3d, #120a1a 70%);
+}
+
+.topbar h1 {
+  margin: 0 0 4px;
+  font-size: 26px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  background: linear-gradient(90deg, var(--accent-3), var(--accent), var(--accent-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.topbar p { margin: 0; color: var(--muted); max-width: 720px; }
+
+.studio {
+  display: flex;
+  gap: 28px;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 22px 28px 32px;
+  flex-wrap: wrap;
+}
+
+.controls {
+  width: 340px;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+fieldset {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 12px 14px 14px;
+  background: var(--panel);
+}
+
+legend {
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-3);
+  padding: 0 6px;
+}
+
+label { display: flex; flex-direction: column; gap: 6px; font-weight: 600; font-size: 14px; }
+label:has(input[type="radio"]) { flex-direction: row; align-items: center; font-weight: 500; }
+
+input[type="text"], select {
+  font: inherit;
+  color: var(--ink);
+  background: var(--panel-2);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 8px 10px;
+}
+
+input[type="range"] { width: 100%; accent-color: var(--accent-2); }
+
+.row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+
+button {
+  font: inherit;
+  font-weight: 600;
+  color: var(--ink);
+  background: var(--panel-2);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+button:hover { border-color: var(--accent); }
+button.active { background: var(--accent-2); border-color: var(--accent-2); color: #fff; }
+
+.file-label { cursor: pointer; }
+.file-label input[type="file"] { font-weight: 400; }
+
+.export {
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #1c0a00;
+  background: linear-gradient(90deg, var(--accent-3), var(--accent));
+  border: 0;
+  padding: 13px;
+}
+.export:hover { filter: brightness(1.08); }
+
+.hint { margin: 0; color: var(--muted); font-size: 13px; font-weight: 400; }
+#status { margin: 0; color: var(--accent-3); font-weight: 600; min-height: 1.2em; }
+
+.preview-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  max-width: 100%;
+}
+
+#preview {
+  width: min(72vh, 640px);
+  height: auto;
+  max-width: 100%;
+  border-radius: 4px;
+  box-shadow: 0 14px 44px rgba(0, 0, 0, 0.55), 0 0 0 1px var(--line);
+  cursor: crosshair;
+  background: #2b1838;
+}
+
+/* Screenshot mode: cover alone, fitted to the viewport, controls hidden. */
+body.shot-cover .topbar,
+body.shot-cover .controls,
+body.shot-cover .preview-wrap .hint { display: none; }
+body.shot-cover { background: #0a0610; }
+body.shot-cover .studio { padding: 0; }
+body.shot-cover #preview { box-shadow: none; border-radius: 0; width: auto; height: auto; }
+
+/* Screenshot mode: editor with a photo loaded, roomier preview. */
+body.shot-editor #preview { width: min(78vh, 700px); }
